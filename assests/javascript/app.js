@@ -39,7 +39,6 @@ $(document).on("click", "img", function() {
     still = $(this).attr("data-still")
     animate = $(this).attr("data-animate")
     status = $(this).attr("data-status")
- 
 
 //by default the imaged are loaded still, click will check if the status is still, and if so - the src will be changed to 
 //the animated url and the image will animate  
@@ -49,29 +48,27 @@ $(document).on("click", "img", function() {
          //change "data-status", animate
         $(this).attr("data-status", "animate")
         
-        
 //when an animated gif is clicked it will revrse the above action and change to still
     } else if (status = "animate"){
          //replace src with "data-still" value
         $(this).attr("src", still)
           //change "data-status", still
         $(this).attr("data-status", "still")
-
     }
 
 });
-
 
 //When a topic button is clicked - this function holds the API Get and appending of images to DIV
 $(document).on("click", ".topicButton",function(){
     //empty any existing gifs
     $("#gifs").empty()
+
     //jquery to grab "data-topic" set to search value
-   
     search = $(this).attr("data-topic")
    
     //pass search term, and limit into api key that includes rating preference
-    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=" + limit + "&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
+    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=" + limit + 
+    "&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
 
     //JSON API GET call
     $.ajax({
@@ -79,34 +76,27 @@ $(document).on("click", ".topicButton",function(){
         method: "GET"
     })
     .then(function(response) {
-        //loop to create individual items based on the limit
+        //we need a loop so we can create individual items based on the limit set
         for (let i = 0; i < limit+1 ; i++){
        
-
-         //variables to capture pertinent information from JSON you want to capture still and animated URLS +  rating
-         
+         //variables to capture pertinent information from JSON you want to capture still and animated URLS +  rating 
          let animateUrl = response.data[i].images.fixed_height_small.url;
          let stillUrl = response.data[i].images.fixed_height_small_still.url;
          let rating = response.data[i].rating;
 
          //jqeury varibles to make creating new elements cleaner and easier to update
-        let figure = $("<imgcaption>")
+         let figure = $("<imgcaption>")
          let gif = $("<img>");
          let rater = $("<h3>")
        
-           
-
          //apply neccesary attributes to each element: source, alt, seperate links for still and animated images 
          //+ an attr for animate/still control. The still image will be loaded by default and the animate stored to
          //allow toggleing between still and animated
          gif.attr({"src": stillUrl, "alt": "gif", "data-rating": rating, 
          "data-still": stillUrl, "data-animate": animateUrl, "data-status": "still"});
          
-
          //append each image/gif to the images div, with Rating
-         
         $("#gifs").append(gif, rater)
-      
         }
         
     });
