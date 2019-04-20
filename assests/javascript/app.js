@@ -2,7 +2,7 @@
 let topics = ["dog", "dawg", "cats"];
 //variable to store the search term
 let search = "";
-//the number of gifs to return on query, can be adjusted to change results dynamically
+//the number of gifs to return on query, can be adjusted to change appended gifs dynamically
 let limit = 10;
 
 
@@ -17,10 +17,8 @@ function rendButtons (){
         $("#buttons").append(button);
     }
 }
-//load buttons
+//load button function
 rendButtons()
-
-//add a new button for giphy fun and action
             
 //function to add user defined searchs to button array
 $("#addNewTopic").on("click", function(){
@@ -33,30 +31,6 @@ $("#addNewTopic").on("click", function(){
     rendButtons()
 });
 
-//function to animate a still image and still an animated image        
-$(document).on("click", "img", function() {
-    //jQuery to grab the element attributes we need to change the soure and status of the element
-    still = $(this).attr("data-still")
-    animate = $(this).attr("data-animate")
-    status = $(this).attr("data-status")
-
-//by default the imaged are loaded still, click will check if the status is still, and if so - the src will be changed to 
-//the animated url and the image will animate  
-    if (status == "still"){
-        //replace src with "data-animate" value
-        $(this).attr("src", animate)
-         //change "data-status", animate
-        $(this).attr("data-status", "animate")
-        
-//when an animated gif is clicked it will revrse the above action and change to still
-    } else if (status = "animate"){
-         //replace src with "data-still" value
-        $(this).attr("src", still)
-          //change "data-status", still
-        $(this).attr("data-status", "still")
-    }
-
-});
 
 //When a topic button is clicked - this function holds the API Get and appending of images to DIV
 $(document).on("click", ".topicButton",function(){
@@ -97,11 +71,33 @@ $(document).on("click", ".topicButton",function(){
          
          //append each image/gif to the images div, with Rating
         $("#gifs").append(gif, rater)
-        }
-        
+        }      
     });
-  
-   
+});
+
+//now that the gifs are loaded on the page, the following function is called when a gif is clicked
+//it is used to animate a still image and pause/stop an animated image        
+$(document).on("click", "img", function() {
+//jQuery to grab the element attributes we need to change the soure and status of the element
+still = $(this).attr("data-still")
+animate = $(this).attr("data-animate")
+status = $(this).attr("data-status")
+
+//by default the imaged are loaded still, click will check if the status is still, and if so - the src will be changed to 
+//the animated url and the image will animate  
+if (status == "still"){
+    //replace src with "data-animate" value
+    $(this).attr("src", animate)
+        //change "data-status", animate
+    $(this).attr("data-status", "animate")
+        
+//when an animated gif is clicked it will revrse the above action and change to still
+    } else if (status = "animate"){
+         //replace src with "data-still" value
+        $(this).attr("src", still)
+          //change "data-status", still
+        $(this).attr("data-status", "still")
+    }
 
 });
 
