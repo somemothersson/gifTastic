@@ -1,18 +1,3 @@
-
-//gif button functions
-    
-    //when an animated gif is clicked it should change to be still
-        //replace src with "data-still" value
-        //change "data-status", still
-//add a new button- search term
-    //input field, a user can enter any term to search for gifs
-    //when click submit
-        //new button will be added for use
-        //append searched term to "data-topic" attr
-            
-            
-//declare varibles
-
 //array to hold basic images
 let topics = ["dog", "dawg", "cats"];
 //variable to store the search term
@@ -31,11 +16,12 @@ function rendButtons (){
         .attr("data-topic", topics[i]);
         $("#buttons").append(button);
     }
-   
 }
 //load buttons
 rendButtons()
 
+//add a new button for giphy fun and action
+            
 //function to add user defined searchs to button array
 $("#addNewTopic").on("click", function(){
     event.preventDefault();
@@ -45,40 +31,33 @@ $("#addNewTopic").on("click", function(){
     topics.push(newTopic);
     //will reload all existing buttons and add newly created as it is now part of the array
     rendButtons()
-
-
 });
 
-
-
-    
-    
-    
-    //query gify api with "data-attr" value
-            
+//function to animate a still image and still an animated image        
 $(document).on("click", "img", function() {
+    //jQuery to grab the element attributes we need to change the soure and status of the element
     still = $(this).attr("data-still")
     animate = $(this).attr("data-animate")
     status = $(this).attr("data-status")
-    console.log("clicked")
-//when a still gif is clicked the image should begin to animate
-        
-        //change "data-status", animate
+ 
+
+//by default the imaged are loaded still, click will check if the status is still, and if so - the src will be changed to 
+//the animated url and the image will animate  
     if (status == "still"){
         //replace src with "data-animate" value
         $(this).attr("src", animate)
+         //change "data-status", animate
         $(this).attr("data-status", "animate")
         
-        console.log("clicked")
-
+        
+//when an animated gif is clicked it will revrse the above action and change to still
     } else if (status = "animate"){
+         //replace src with "data-still" value
         $(this).attr("src", still)
+          //change "data-status", still
         $(this).attr("data-status", "still")
 
     }
-
-
-
 
 });
 
