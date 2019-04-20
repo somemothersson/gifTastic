@@ -1,5 +1,12 @@
 .topicButton {
+    display: flex;
+    flex-wrap: wrap;
     background-color: darkmagenta
 
+
+}
+#gifs {
+    display: flex;
+    flex-wrap: wrap;
 
 }

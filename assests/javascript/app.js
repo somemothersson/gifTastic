@@ -49,13 +49,13 @@ $(document).on("click", "img", function() {
 
     if (status == "still"){
         $(this).attr("src", animate)
-        $(this).attr("status", "animate")
-        console.log(state)
+        $(this).attr("data-status", "animate")
+        
         console.log("clicked")
 
-    } else {
+    } else if (status = "animate"){
         $(this).attr("src", still)
-        $(this).attr("status", "still")
+        $(this).attr("data-status", "still")
 
     }
 
