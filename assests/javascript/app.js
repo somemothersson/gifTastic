@@ -5,24 +5,22 @@
         //each gif will display it's rating
 //gif button functions
     //when a still gif is clicked the image should begin to animate
-        //replace src with "data animate" value
-        //change
+        //replace src with "data-animate" value
+        //change "data-status", animate
     //when an animated gif is clicked it should change to be still
+        //replace src with "data-still" value
+        //change "data-status", still
 //add a new button- search term
     //input field, a user can enter any term to search for gifs
     //when click submit
         //new button will be added for use
-            //the following attributs need to be GOT from gify and saved as attributes to the element via jquery
-            //"src", response.fixed_height_small_still.url
-            //"data-rating", response.rating
-            //"data-still", response.fixed_height_small_still.url
-            //"data-animate", response.fixed_height_small.url
-            //"data-status", "still"
-            //
-            still, animate, stauts(static, animate))
-                //still image link
+        //append searched term to "data-topic" attr
+            
+            
 
-let topics = ["so", "to", "foo"];
+let topics = ["dog", "dawg", "cats"];
+let search = "";
+let limit = 10;
 
 function rendButtons (){
     $("#buttons").empty()
@@ -36,9 +34,70 @@ function rendButtons (){
    
 }
 rendButtons()
+//fill gifs
 
-$(document).on("click", ".topicButton", function(){
-    console.log(($this).attr("data-topic"));
+    //jquery to grab "data-topic" set to search value
+    
+    
+    //query gify api with "data-attr" value
+            
+
+
+
+$(document).on("click", ".topicButton",function(){
+    $("#gifs").empty()
+    
+    search = $(this).attr("data-topic")
+    console.log(search);
+    //  jquery to grab "data-topic" set to search value
+   
+    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=" + limit + "&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
+    //
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function(response) {
+        for (let i = 0; i < 11; i++){
+        // console.log(response.data[i]);
+
+         //create variable to capture what information from JSON you want to capture
+         
+         let animateUrl = response.data[i].images.fixed_height_small.url;
+         let stillUrl = response.data[i].images.fixed_height_small_still.url;
+         let rating = response.data[i].rating;
+
+       
+         let gif = $("<img>");
+           
+
+         //create image elements with tattributes of the specified source and alt
+         gif.attr("src", animateUrl);
+        
+         // "alt": "gif", "data-rating": rating, 
+         //"data-still": stillUrl, "data-animate": animateUrl, "data-status": "still"});
+         
+
+         //prepend each image to the images div, so each image request
+         
+        console.log(rating)
+        console.log(stillUrl)
+        console.log(animateUrl)
+        
+        $("#gifs").prepend(gif); 
+        }
+        
+    });
+  
+      //variable to store the jQuery object for repeated use
+         //the following attributs need to be GOT from gify and saved as attributes to the element via jquery
+            //"src", response.fixed_height_small_still.url
+            //"data-rating", response.rating
+            //"data-still", response.fixed_height_small_still.url
+            //"data-animate", response.fixed_height_small.url
+            //"data-status", "still"
+
 
 });
 
@@ -53,6 +112,7 @@ $("#addNewTopic").on("click", function(){
 
 });
 
+
 // let state = $(this).attr("data-state")
 //       let animateGif = $(this).attr("data-animate")
 //       let stillGif = $(this).attr("data-still")
@@ -65,15 +125,15 @@ $("#addNewTopic").on("click", function(){
 //         $(this).attr("data-state", animate)
 //         console.log(state)
 
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=10&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
-var search = 420;
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function(response) {
-    console.log(response);
-    response.rating
-    response.fixed_height_small_still.url
-    response.fixed_height_small.url
+// var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=10&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
+//
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+// }).then(function(response) {
+//     console.log(response);
+//     response.rating
+//     response.fixed_height_small_still.url
+//     response.fixed_height_small.url
     
-});
+// });
