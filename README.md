@@ -3,10 +3,10 @@
 - [x] Create `Readme`
 - [x] Submit Links to BCS
 - [x] Create Basic HTML Layout
-- [] Get Javascript and jQuery funcationality Working 
+- [x] Get Javascript and jQuery funcationality Working 
 - [] Style
-- [] Test
-- [x] [Add to Portfolio](https://somemothersson.github.io/HW1-Portfolio/Basic-Portfolio/index.html)
+- [x] Test
+- [] [Add to Portfolio](https://somemothersson.github.io/HW1-Portfolio/Basic-Portfolio/index.html)
 
 ### Before You Begin
 

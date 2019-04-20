@@ -1,8 +1,8 @@
 .topicButton {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-color: darkmagenta
+    
+    background-color: darkmagenta;
+    border-radius: 50%;
+    color: azure;
 
 
 }
@@ -10,4 +10,13 @@
     display: flex;
     flex-wrap: wrap;
 
+}
+#buttons {
+    width: 960px;
+    margin: 0 auto;
+
+
+}
+#form{
+    float: right;
 }
