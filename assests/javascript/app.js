@@ -41,7 +41,28 @@ rendButtons()
     
     //query gify api with "data-attr" value
             
+$(document).on("click", "img", function() {
+    still = $(this).attr("data-still")
+    animate = $(this).attr("data-animate")
+    status = $(this).attr("data-status")
+    console.log("clicked")
 
+    if (status == "still"){
+        $(this).attr("src", animate)
+        $(this).attr("status", "animate")
+        console.log(state)
+        console.log("clicked")
+
+    } else {
+        $(this).attr("src", still)
+        $(this).attr("status", "still")
+
+    }
+
+
+
+
+});
 
 
 $(document).on("click", ".topicButton",function(){
@@ -73,10 +94,8 @@ $(document).on("click", ".topicButton",function(){
            
 
          //create image elements with tattributes of the specified source and alt
-         gif.attr("src", animateUrl);
-        
-         // "alt": "gif", "data-rating": rating, 
-         //"data-still": stillUrl, "data-animate": animateUrl, "data-status": "still"});
+         gif.attr({"src": stillUrl, "alt": "gif", "data-rating": rating, 
+         "data-still": stillUrl, "data-animate": animateUrl, "data-status": "still"});
          
 
          //prepend each image to the images div, so each image request
@@ -124,16 +143,3 @@ $("#addNewTopic").on("click", function(){
 //         $(this).attr("src", animateGif)
 //         $(this).attr("data-state", animate)
 //         console.log(state)
-
-// var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&&rating=pg&&limit=10&&api_key=Ss4Q4xQlkM4F26E43IeKPi92k0s4W3oW";
-//
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function(response) {
-//     console.log(response);
-//     response.rating
-//     response.fixed_height_small_still.url
-//     response.fixed_height_small.url
-    
-// });
